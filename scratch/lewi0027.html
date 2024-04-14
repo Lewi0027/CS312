@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="stylesheet" href="style.css"> -->
+    <title>t9 Homepage</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <style>
+        /* Colors */
+        .black {
+            background: black;
+        }
+        .red {
+            background: red;
+        }
+        .blue {
+            background: blue;
+        }
+        .yellow {
+            background: yellow;
+        }
+        .green {
+            background: green;
+        }
+        .purple {
+            background: purple;
+        }
+        .orange {
+            background: orange;
+        }
+        .cyan {
+            background: cyan;
+        }
+        .magenta {
+            background: magenta;
+        }
+        .gray {
+            background: gray;
+        }
+
+        /* Header & Body */
+        .container {
+            display: flex;
+            justify-content: space-between;
+        }
+        .content {
+            width: calc(100% - 200px);
+        }
+
+        /* Tables */
+        .tableContainer {
+            display: flex;
+            justify-content: center;
+        }
+
+        /* Table 1 */
+        .table1 {
+            clear: both;
+            border: 1px solid;
+        }
+        .cell1 {
+            height: 100px;
+            min-width: 100px;
+            border: 1px solid black;
+            text-align: center;
+            cursor: pointer;
+        }
+        .cell1.selected {
+            border: 3px solid red;
+        }
+        .red.selected{
+            border: 3px solid black;
+        }
+        .magenta.selected{
+            border: 3px solid black;
+        }
+        
+        /* Table 2 */
+        .table2 {
+            clear: both;
+            border: 3px solid #D3D3D3;
+            justify-content: center;
+        }
+        td {
+            border: 1px solid;
+            height: 25px;
+            min-width: 25px;
+            background: white;
+        }
+        .cell2 {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Henry Lewis</h1>
+        <div style="width: 200px; height: 100px; background: black;">
+            <h1 style="color: white; font-size: 10px; text-align: left">
+                <p>Step numbers completed:</p>
+                <p style="margin-top: 0; margin-bottom: 0; text-align: center; font-size: 30px;">10(All)</p>
+            </h1>
+        </div>
+    </div>
+    <div>
+        <br><br>
+    </div>
+    <div class="content">
+        <div class="tableContainer">
+            <table class="table1">
+                <tr>
+                    <td class="cell1 black selected"></td>
+                    <td class="cell1 red"></td>
+                    <td class="cell1 blue"></td>
+                    <td class="cell1 yellow"></td>
+                    <td class="cell1 green"></td>
+                    <td class="cell1 purple"></td>
+                    <td class="cell1 orange"></td>
+                    <td class="cell1 cyan"></td>
+                    <td class="cell1 magenta"></td>
+                    <td class="cell1 gray"></td>
+                </tr>
+            </table>
+        </div><br><br>
+        <div class="tableContainer">
+        </div>
+    </div>
+</body>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        let cell1 = document.querySelectorAll(".cell1");
+        let newColor = 'black';
+        let secret = false;
+
+        cell1.forEach(function(cell) {
+            cell.addEventListener('click', function() {
+                let oldSelectedCell = document.querySelector('.cell1.selected');
+                cell.classList.add('selected');
+                newColor = Array.from(cell.classList)[1];
+                oldColor = Array.from(oldSelectedCell.classList)[1];
+                if (oldSelectedCell && (oldColor != newColor)) {
+                    oldSelectedCell.classList.remove('selected');
+                    let cellsToChange = document.querySelectorAll('.cell2.' + oldColor);
+                    cellsToChange.forEach(function(cell) {
+                        cell.classList.remove(oldColor);
+                        cell.classList.add(newColor);
+                    });
+                }
+                if (oldColor == newColor) {
+                    alert('Please choose a new color.');
+                }
+            });
+        });
+
+        function createTable(numRowCol) {
+            let container = document.querySelectorAll('.tableContainer')[1]
+            let table = document.createElement('table');
+
+            table.setAttribute('class', 'table2');
+
+            for (let i=0; i<numRowCol; i++) {
+                let row = document.createElement('tr');
+
+                for (let j=0; j<numRowCol; j++) {
+                    let cell = document.createElement('td');
+                    let cellID = 'cell_' + j + '_' + i;
+                    cell.setAttribute('id', cellID);
+                    cell.setAttribute('class', 'cell2');
+                    row.appendChild(cell);
+                }
+                table.appendChild(row);
+            }
+            container.appendChild(table);
+        }
+
+        createTable(20);
+
+        let cell2 = document.querySelectorAll('.cell2');
+
+        cell2.forEach(function(cell) {
+            cell.addEventListener('click', function() {
+                if (newColor == '') {
+                    alert("You must select a color first");
+                }
+                else {
+                    let cellID = event.target.id;
+                    let cellIDArray = cellID.split('_');
+
+                    for (let i = -1; i <= 1; i+=2) {
+                        let xValue = parseInt(cellIDArray[1]);
+                        let yValue = parseInt(cellIDArray[2]);
+                        let leftRight = 'cell_' + (xValue + i) + '_' + yValue;
+                        let downUp = 'cell_' + xValue + '_' + (yValue + i);
+
+                        if (((xValue + i) <= 19) && ((xValue + i) >= 0)) {
+                            document.getElementById(leftRight).className = 'cell2 ' + newColor;
+                        }
+                        if (((yValue + i) <= 19) && ((yValue + i) >= 0)) {
+                            document.getElementById(downUp).className = 'cell2 ' + newColor;
+                        }
+                    }
+                    cell.className = 'cell2 ' + newColor;
+                }
+            });
+            cell.addEventListener('contextmenu', function() {
+                let cellClass = event.target.classList;
+                if (cellClass[1]) {
+                    event.preventDefault();
+                    cell.className = 'cell2';
+                    if (secret == false) {
+                        secret = true;
+                        alert('secret function found!');
+                    }
+                }
+            });
+        });
+    });
+</script>
+<script>
+    // $(document).ready(function() {
+    //     alert("jQuery is loaded!");
+    // });
+</script>
+</html>

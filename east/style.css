@@ -1,0 +1,45 @@
+body {
+	background-color: #2703A6;
+	color: #F2B705;
+}
+.pagerules {
+	width: 800px;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+}
+.navbar {
+	box-shadow: 
+    0 0 0 6px #F2B705,
+	0 0 0 6px #F29F05 inset;
+	padding: 15px 6px;
+	display: inline-block;
+}
+.navbar a {
+	color: #F2b705;
+	text-decoration: none;
+	padding: 10px 30px;
+	position: relative;
+}
+a:hover {
+	font-weight: bold;
+	background-color: #141259;
+}
+.list-container ul, .list-container ol {
+	display: inline-block;
+	text-align: left;
+}
+.table {
+	display:table;
+	width: 80%;
+	margin: 0 auto;
+}
+.row {
+	display: table-row;
+}
+.cell {
+	display: table-cell;
+	padding: 2x;
+	border: 1px solid #F2B705;
+	vertical-align: top;
+}

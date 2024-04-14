@@ -1,0 +1,49 @@
+body {
+    width: 50vw;
+    min-width: 800px;
+    margin: auto;
+}
+#title {
+    font-family: cursive;
+    color: red;
+}
+#navbar {
+   background-color: green;
+   overflow: hidden; 
+}
+#nav li {
+    list-style-type: none;
+    display: inline-block;
+    padding: 0px 10px;
+}
+#nav li:first-child {
+    margin-left: -40px;
+}
+div img {
+    float: right;
+}
+p {
+    overflow: hidden;
+}
+#facts {
+    background-color: cornsilk;
+    border: 3px solid green;
+    width: 50%;
+    padding: 20px 30px;
+}
+#facts li {
+    list-style-type: "🌶";
+    display: list-item;
+}
+.bold {
+    font-weight: bold;
+}
+a {
+    background-color: green;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+h2 {
+    clear: both;
+}
