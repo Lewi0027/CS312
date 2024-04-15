@@ -1,3 +1,4 @@
+/* General formatting */
 body, button, p, h3 {
     font-family:'Times New Roman', Times, serif, sans-serif;
 }
@@ -7,22 +8,10 @@ body, button, p, h3 {
 .header {
     text-decoration: underline;
 }
-.bold {
-    font-weight: bold; 
-}
-.antique {
-    color: red;
-}
 .image {
     display: block;
     margin-left: auto;
     margin-right: auto;
-}
-p {
-    font-weight: bold;
-}
-ul p {
-    text-align: left;
 }
 .floatContainer {
     display: flex;
@@ -34,6 +23,23 @@ ul p {
     margin: 20px auto;
     width: 90%;
 }
+
+/* Text */
+.bold {
+    font-weight: bold; 
+}
+.antique {
+    color: red;
+}
+p {
+    font-weight: bold;
+}
+ul p {
+    text-align: left;
+}
+
+
+/* Buttons */
 button {
     background: none;
     border: none;
@@ -47,12 +53,6 @@ button:hover {
     font-size: 24px;
     text-shadow: 1px 1px 0 black;
 }
-.divBorder {
-    border: 1px solid black;
-    max-width: 500px;
-    margin-right: auto;
-    margin-left: auto;
-}
 .yellowButton {
     color: #ffe135;
 }
@@ -61,4 +61,12 @@ button:hover {
 }
 .blueButton {
     color: blue;
+}
+
+/* Dynamic text */
+.divBorder {
+    border: 1px solid black;
+    max-width: 500px;
+    margin-right: auto;
+    margin-left: auto;
 }
